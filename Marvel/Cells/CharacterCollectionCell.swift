@@ -9,7 +9,17 @@
 import UIKit
 import Reusable
 
-final class CharacterCollectionCell: UICollectionViewCell, NibReusable {
+final class CharacterCollectionCell: UICollectionViewCell, ReusableViewCodeBased {
+    var needsSetup: Bool = true
+    
+    func setupComponents() {
+        
+    }
+    
+    func setupAutolayout() {
+        
+    }
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var thumb: UIImageView!
     
