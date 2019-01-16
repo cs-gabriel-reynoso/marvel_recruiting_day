@@ -25,6 +25,7 @@ final class CharactersViewController: UIViewController {
 extension CharactersViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Characters"
         view = CharactersView(frame: view.bounds)
         charactersView.setupView()
         setupSearchBar()
