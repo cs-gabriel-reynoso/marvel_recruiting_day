@@ -73,7 +73,11 @@ extension CharactersView: ViewCodeBased {
         searchBar = UISearchBar(frame: .zero)
         activityIndicator = UIActivityIndicatorView(frame: .zero)
         tableView = UITableView(frame: .zero)
-        collectionView = UICollectionView(frame: .zero)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        addSubview(searchBar)
+        addSubview(activityIndicator)
+        addSubview(tableView)
+        addSubview(collectionView)
     }
     
     func setupAutolayout() {

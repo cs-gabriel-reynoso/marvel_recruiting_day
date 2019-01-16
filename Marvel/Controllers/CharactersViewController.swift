@@ -26,6 +26,7 @@ extension CharactersViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = CharactersView(frame: view.bounds)
+        charactersView.setupView()
         setupSearchBar()
         fetchCharacters()
     }
