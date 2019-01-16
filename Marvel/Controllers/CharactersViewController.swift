@@ -10,49 +10,22 @@ import UIKit
 
 final class CharactersViewController: UIViewController {
 
-    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var tableViewDataSource: CharacterTableViewDataSource?
-    var tableViewDelegate: CharacterTableViewDelegate?
-    
-    var collectionViewDataSource: CharacterCollectionViewDataSource?
-    var collectionViewDelegate: CharacterCollectionViewDelegate?
-    
     let service: MarvelService = MarvelServiceImpl()
-    var characters: [Character] = []
     
-    fileprivate enum LoadingState {
-        case loading
-        case ready
-    }
-    
-    fileprivate enum PresentationState {
-        case initial
-        case list
-        case grid
-        case error
-    }
-    
-    fileprivate var loadingState: LoadingState = .ready {
-        didSet {
-            refreshLoading(state: loadingState)
-        }
-    }
-
-    fileprivate var presentationState: PresentationState = .list {
-        didSet {
-            refreshUI(for: presentationState)
-        }
+    var charactersView: CharactersView! {
+        return view as? CharactersView
     }
 }
 
 extension CharactersViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        view = CharactersView(frame: view.bounds)
         setupSearchBar()
         fetchCharacters()
     }
@@ -60,85 +33,53 @@ extension CharactersViewController {
 
 extension CharactersViewController {
     
-    fileprivate func refreshLoading(state: LoadingState) {
-        switch state {
-        case .loading:
-            activityIndicator.startAnimating()
-        case .ready:
-            activityIndicator.stopAnimating()
-        }
-    }
-    
-    fileprivate func refreshUI(for presentationState: PresentationState) {
-        switch presentationState {
-        case .list:
-            tableView.isHidden = false
-            collectionView.isHidden = true
-        case .grid:
-            tableView.isHidden = true
-            collectionView.isHidden = false
-        case .error, .initial:
-            tableView.isHidden = true
-            collectionView.isHidden = true
-        }
-    }
-}
-extension CharactersViewController {
-    
     func setupTableView(with items: [Character]) {
-        tableViewDataSource = CharacterTableViewDataSource(items: characters,
-                                                           tableView: tableView)
-        tableViewDelegate = CharacterTableViewDelegate(items: characters, delegate: self)
-        
-        tableView.dataSource = tableViewDataSource
-        tableView.delegate = tableViewDelegate
+        guard let charsView = charactersView else { return }
+        charsView.tableViewDataSource = CharacterTableViewDataSource(items: items)
+        charsView.tableViewDelegate = CharacterTableViewDelegate(items: items, delegate: self)
         tableView.reloadData()
     }
     
     func setupCollectionView(with items: [Character]) {
-        collectionViewDataSource = CharacterCollectionViewDataSource(items: characters,
-
-                                                                collectionView: collectionView)
-        collectionViewDelegate = CharacterCollectionViewDelegate(items: characters, delegate: self)
-
-        
-        collectionView.dataSource = collectionViewDataSource
-        collectionView.delegate = collectionViewDelegate
+        guard let charsView = charactersView else { return }
+        charsView.collectionViewDataSource = CharacterCollectionViewDataSource(items: items)
+        charsView.collectionViewDelegate = CharacterCollectionViewDelegate(items: items, delegate: self)
         collectionView.reloadData()
     }
 }
 
 extension CharactersViewController {
     func fetchCharacters(query: String? = nil) {
-        loadingState = .loading
+        charactersView?.loadingState = .loading
         service.fetchCharacters(query: query) { [weak self] result in
-            self?.loadingState = .ready
+            self?.charactersView?.loadingState = .ready
             switch result {
             case .success(let characters):
                 self?.handleFetch(of: characters)
             case .error:
-                self?.presentationState = .error
+                self?.charactersView?.presentationState = .error
             }
         }
     }
     
     func handleFetch(of characters: [Character]) {
-        self.characters = characters
+        guard let charsView = charactersView else { return }
+        charsView.characters = characters
         self.setupTableView(with: characters)
         self.setupCollectionView(with: characters)
-        let currentState = presentationState
-        self.presentationState = currentState
+        let currentState = charsView.presentationState
+        charsView.presentationState = currentState
     }
 
 }
 
 extension CharactersViewController {
     @IBAction func showAsGrid(_ sender: UIButton) {
-        presentationState = .grid
+        charactersView.presentationState = .grid
     }
     
     @IBAction func showAsTable(_ sender: UIButton) {
-        presentationState = .list
+        charactersView.presentationState = .list
     }
 }
 

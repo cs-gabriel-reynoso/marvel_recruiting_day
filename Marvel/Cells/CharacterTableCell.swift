@@ -66,12 +66,10 @@ final class CharacterTableCell: UITableViewCell, ReusableViewCodeBased {
         mainStackView.axis = .horizontal
         mainStackView.spacing = 15
         
-        
+        mainStackView.attachToSafeArea(margin: 10)
         
         characterThumbImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         characterThumbImageView.widthAnchor.constraint(equalTo: characterThumbImageView.heightAnchor).isActive = true
-        
-        
     }
     
     func setup(character: Character) {

@@ -12,14 +12,9 @@ final class CharacterCollectionViewDataSource: NSObject, UICollectionViewDataSou
     
     let items: [Character]
     
-    init(items: [Character], collectionView: UICollectionView) {
+    init(items: [Character]) {
         self.items = items
         super.init()
-        registerCells(in: collectionView)
-    }
-    
-    private func registerCells(in collectionView: UICollectionView) {
-        collectionView.register(cellType: CharacterCollectionCell.self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

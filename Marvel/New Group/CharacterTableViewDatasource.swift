@@ -12,15 +12,9 @@ final class CharacterTableViewDataSource: NSObject, UITableViewDataSource {
     
     let items: [Character]
     
-    init(items: [Character], tableView: UITableView) {
+    init(items: [Character]) {
         self.items = items
         super.init()
-        setupTableView(tableView)
-    }
-    
-    private func setupTableView(_ tableView: UITableView) {
-        tableView.register(cellType: CharacterTableCell.self)
-        tableView.rowHeight = 80
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
