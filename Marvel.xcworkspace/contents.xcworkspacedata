@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/gabriel.n.reynoso/Documents/Projects/marvel_recruiting_day/Marvel/Cells/CharactersView.swift">
+   </FileRef>
+   <FileRef
       location = "group:Marvel.xcodeproj">
    </FileRef>
    <FileRef

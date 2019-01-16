@@ -46,6 +46,10 @@ extension CharactersViewController {
         charsView.collectionViewDelegate = CharacterCollectionViewDelegate(items: items, delegate: self)
         collectionView.reloadData()
     }
+    
+    func setupSearchBar() {
+        charactersView.searchBarDelegate = self
+    }
 }
 
 extension CharactersViewController {
@@ -85,9 +89,6 @@ extension CharactersViewController {
 
 
 extension CharactersViewController: UISearchBarDelegate {
-    func setupSearchBar() {
-        self.searchBar.delegate = self
-    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
