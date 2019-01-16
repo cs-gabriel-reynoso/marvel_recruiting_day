@@ -74,10 +74,10 @@ extension CharactersView: ViewCodeBased {
         activityIndicator = UIActivityIndicatorView(frame: .zero)
         tableView = UITableView(frame: .zero)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        addSubview(searchBar)
-        addSubview(activityIndicator)
         addSubview(tableView)
         addSubview(collectionView)
+        addSubview(searchBar)
+        addSubview(activityIndicator)
     }
     
     func setupAutolayout() {
@@ -93,6 +93,10 @@ extension CharactersView: ViewCodeBased {
         collectionView.attachToSafeAreaLeftRightAnchors()
         collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
+    }
+    
+    func setupAdditional() {
+        backgroundColor = ColorPalette.white
     }
 }
 
