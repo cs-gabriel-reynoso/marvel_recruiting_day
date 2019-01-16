@@ -52,6 +52,9 @@ final class CharacterTableCell: UITableViewCell, ReusableViewCodeBased {
         characterNameLabel = UILabel(frame: .zero)
         characterDescLabel = UILabel(frame: .zero)
         characterThumbImageView = UIImageView(frame: .zero)
+        addSubview(characterNameLabel)
+        addSubview(characterDescLabel)
+        addSubview(characterThumbImageView)
     }
     
     func setupAutolayout() {

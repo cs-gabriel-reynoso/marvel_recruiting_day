@@ -9,11 +9,6 @@
 import UIKit
 
 final class CharactersViewController: UIViewController {
-
-//    @IBOutlet weak var searchBar: UISearchBar!
-//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-//    @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var collectionView: UICollectionView!
     
     let service: MarvelService = MarvelServiceImpl()
     
@@ -39,14 +34,12 @@ extension CharactersViewController {
         guard let charsView = charactersView else { return }
         charsView.tableViewDataSource = CharacterTableViewDataSource(items: items)
         charsView.tableViewDelegate = CharacterTableViewDelegate(items: items, delegate: self)
-//        tableView.reloadData()
     }
     
     func setupCollectionView(with items: [Character]) {
         guard let charsView = charactersView else { return }
         charsView.collectionViewDataSource = CharacterCollectionViewDataSource(items: items)
         charsView.collectionViewDelegate = CharacterCollectionViewDelegate(items: items, delegate: self)
-//        collectionView.reloadData()
     }
     
     func setupSearchBar() {

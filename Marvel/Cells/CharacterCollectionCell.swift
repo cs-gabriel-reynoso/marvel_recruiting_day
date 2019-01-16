@@ -30,6 +30,9 @@ final class CharacterCollectionCell: UICollectionViewCell, ReusableViewCodeBased
         characterThumbImage = UIImageView(frame: .zero)
         darkLayerView = UIView(frame: .zero)
         characterNameLabel = UILabel(frame: .zero)
+        addSubview(characterThumbImage)
+        addSubview(darkLayerView)
+        addSubview(characterNameLabel)
     }
     
     func setupAutolayout() {
