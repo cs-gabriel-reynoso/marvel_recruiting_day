@@ -13,7 +13,10 @@ final class CharactersViewController: UIViewController {
     let service: MarvelService = MarvelServiceImpl()
     
     var charactersView: CharactersView! {
-        return view as? CharactersView
+        didSet {
+            charactersView.setupView()
+            view = charactersView
+        }
     }
 }
 
@@ -21,8 +24,7 @@ extension CharactersViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Characters"
-        view = CharactersView(frame: view.bounds)
-        charactersView.setupView()
+        charactersView = CharactersView(frame: view.bounds)
         setupSearchBar()
         fetchCharacters()
     }
