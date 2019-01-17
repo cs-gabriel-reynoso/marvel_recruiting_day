@@ -38,7 +38,7 @@ class MarvelServiceImpl: MarvelService {
         var urlComps = URLComponents(string: endpoint)
         
         var queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "apikey", value: MarvelAPIConfig.apikey),
+            URLQueryItem(name: "apikey", value: MarvelAPIConfig.apikey()),
             URLQueryItem(name: "ts", value: MarvelAPIConfig.ts),
             URLQueryItem(name: "hash", value: MarvelAPIConfig.hash),
             URLQueryItem(name: "limit", value: "100")

@@ -22,8 +22,7 @@ final class CharacterTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath,
-                                                 cellType: CharacterTableCell.self)
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CharacterTableCell.self)
         let character = items[indexPath.row]
         cell.setup(character: character)
         return cell

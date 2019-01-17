@@ -9,10 +9,10 @@ import UIKit
 
 class CharactersView: UIView {
     
-    private var searchBar: UISearchBar!
-    private var activityIndicator: UIActivityIndicatorView!
-    private var tableView: UITableView!
-    private var collectionView: UICollectionView!
+    private var searchBar: UISearchBar = UISearchBar(frame: .zero)
+    private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: .zero)
+    private var tableView: UITableView = UITableView(frame: .zero)
+    private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     var characters: [Character] = []
     
@@ -70,19 +70,19 @@ class CharactersView: UIView {
 extension CharactersView: ViewCodeBased {
     
     func setupComponents() {
-        searchBar = UISearchBar(frame: .zero)
-        activityIndicator = UIActivityIndicatorView(frame: .zero)
-        tableView = UITableView(frame: .zero)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+//        searchBar = UISearchBar(frame: .zero)
+//        activityIndicator = UIActivityIndicatorView(frame: .zero)
+//        tableView = UITableView(frame: .zero)
+//        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         addSubview(tableView)
         addSubview(collectionView)
-        addSubview(searchBar)
         addSubview(activityIndicator)
+        addSubview(searchBar)
     }
     
     func setupAutolayout() {
-        searchBar.topAnchor.constraint(equalTo: topAnchor).isActive = true
         searchBar.attachToSafeAreaLeftRightAnchors()
+        searchBar.topAnchor.constraint(equalTo: topAnchor).isActive = true
         
         activityIndicator.attachToSafeAreaCenterYXAnchors()
         
