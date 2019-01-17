@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // First screen
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-        window.rootViewController = UINavigationController(rootViewController: CharactersViewController())
+        window.rootViewController = UINavigationController(rootViewController: CharactersViewController(nibName: nil, bundle: nil))
         self.window = window
         
         window.makeKeyAndVisible()

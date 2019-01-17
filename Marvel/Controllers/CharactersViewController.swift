@@ -18,11 +18,17 @@ final class CharactersViewController: UIViewController {
 }
 
 extension CharactersViewController {
+//    override func loadView() {
+//        super.loadView()
+//        view = CharactersView(frame: view.bounds)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Characters"
-        view = CharactersView(frame: view.bounds)
-        charactersView.setupView()
+        let charView = CharactersView(frame: view.bounds)
+        charView.setupView()
+        view = charView
         setupSearchBar()
         fetchCharacters()
     }
