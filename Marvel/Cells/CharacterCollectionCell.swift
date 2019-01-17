@@ -11,12 +11,17 @@ import Reusable
 
 final class CharacterCollectionCell: UICollectionViewCell, ReusableViewCodeBased {
     
-    private var characterThumbImage: UIImageView!
-    private var darkLayerView: UIView!
-    private var characterNameLabel: UILabel!
+    private var characterThumbImage: UIImageView = UIImageView(frame: .zero)
+    private var darkLayerView: UIView = UIView(frame: .zero)
+    private var characterNameLabel: UILabel = UILabel(frame: .zero)
     
     var needsSetup: Bool = true
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -27,9 +32,9 @@ final class CharacterCollectionCell: UICollectionViewCell, ReusableViewCodeBased
     }
     
     func setupComponents() {
-        characterThumbImage = UIImageView(frame: .zero)
-        darkLayerView = UIView(frame: .zero)
-        characterNameLabel = UILabel(frame: .zero)
+//        characterThumbImage = UIImageView(frame: .zero)
+//        darkLayerView = UIView(frame: .zero)
+////        characterNameLabel =
         addSubview(characterThumbImage)
         addSubview(darkLayerView)
         addSubview(characterNameLabel)
@@ -54,8 +59,8 @@ final class CharacterCollectionCell: UICollectionViewCell, ReusableViewCodeBased
         darkLayerView.layer.opacity = 0.6
         characterNameLabel.text = character.name
         
-        name.text = character.name
-        thumb.download(image: character.thumbImage?.fullPath() ?? "")
+//        name.text = character.name
+//        thumb.download(image: character.thumbImage?.fullPath() ?? "")
     }
     
 }

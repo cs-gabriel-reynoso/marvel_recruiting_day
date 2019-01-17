@@ -83,24 +83,12 @@
                         <rightBarButtonItems>
                             <barButtonItem image="Grid Icon" id="B43-Zz-GvA">
                                 <color key="tintColor" red="1" green="0.98823529409999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="showAsGrid:" destination="7wy-Hx-css" id="Rqd-05-Hbo"/>
-                                </connections>
                             </barButtonItem>
                             <barButtonItem image="List Icon" id="qeA-Rs-8CW">
                                 <color key="tintColor" red="1" green="0.98823529409999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="showAsTable:" destination="7wy-Hx-css" id="tbZ-cn-bKk"/>
-                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <connections>
-                        <outlet property="activityIndicator" destination="zfM-hz-I4n" id="vDV-1q-1jQ"/>
-                        <outlet property="collectionView" destination="ZU2-Kk-0z9" id="Ybi-UC-10S"/>
-                        <outlet property="searchBar" destination="FSe-Lr-fZW" id="LSv-KC-z4D"/>
-                        <outlet property="tableView" destination="ixD-Lv-jLy" id="D5i-F6-flR"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BHJ-BB-ry4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

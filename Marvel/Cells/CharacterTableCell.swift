@@ -17,9 +17,9 @@ final class CharacterTableCell: UITableViewCell, ReusableViewCodeBased {
     private var mainStackView: UIStackView!
     private var labelsStackView: UIStackView!
     
-    private var characterNameLabel: UILabel!
-    private var characterDescLabel: UILabel!
-    private var characterThumbImageView: UIImageView!
+    private var characterNameLabel: UILabel = UILabel(frame: .zero)
+    private var characterDescLabel: UILabel = UILabel(frame: .zero)
+    private var characterThumbImageView: UIImageView = UIImageView(frame: .zero)
     
     var needsSetup: Bool = true
     
@@ -49,9 +49,6 @@ final class CharacterTableCell: UITableViewCell, ReusableViewCodeBased {
     }
     
     func setupComponents() {
-        characterNameLabel = UILabel(frame: .zero)
-        characterDescLabel = UILabel(frame: .zero)
-        characterThumbImageView = UIImageView(frame: .zero)
         addSubview(characterNameLabel)
         addSubview(characterDescLabel)
         addSubview(characterThumbImageView)
@@ -80,8 +77,8 @@ final class CharacterTableCell: UITableViewCell, ReusableViewCodeBased {
         characterDescLabel.text = character.bio.isEmpty ? "No description" : character.bio
         characterThumbImageView.download(image: character.thumbImage?.fullPath() ?? "")
         
-        name.text = character.name
-        characterDescription.text = character.bio.isEmpty ? "No description" : character.bio
-        thumb.download(image: character.thumbImage?.fullPath() ?? "")
+//        name.text = character.name
+//        characterDescription.text = character.bio.isEmpty ? "No description" : character.bio
+//        thumb.download(image: character.thumbImage?.fullPath() ?? "")
     }
 }

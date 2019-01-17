@@ -27,6 +27,11 @@ struct ThumbImage: Codable {
         try container.encode(imageExtension, forKey: .imageExtension)
     }
     
+    init(path:String, imageExtension:String) {
+        self.path = path
+        self.imageExtension = imageExtension
+    }
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         path = try values.decode(String.self, forKey: .path)

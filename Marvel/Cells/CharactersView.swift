@@ -74,6 +74,7 @@ extension CharactersView: ViewCodeBased {
 //        activityIndicator = UIActivityIndicatorView(frame: .zero)
 //        tableView = UITableView(frame: .zero)
 //        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        registerCells()
         addSubview(tableView)
         addSubview(collectionView)
         addSubview(activityIndicator)
@@ -101,6 +102,11 @@ extension CharactersView: ViewCodeBased {
 }
 
 extension CharactersView {
+    
+    private func registerCells() {
+        tableView.register(cellType: CharacterTableCell.self)
+        collectionView.register(cellType: CharacterCollectionCell.self)
+    }
     
     private func refreshLoading(state: LoadingState) {
         switch state {

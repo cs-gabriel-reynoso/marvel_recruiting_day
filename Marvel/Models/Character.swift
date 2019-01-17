@@ -29,6 +29,15 @@ struct Character: Codable {
         try container.encode(thumbImage, forKey: .thumbImage)
     }
     
+    init(id:Int, name:String, bio:String, thumbImage:String? = nil) {
+        self.id = id
+        self.name = name
+        self.bio = bio
+        if let imagePath = thumbImage {
+            self.thumbImage = ThumbImage(path: imagePath, imageExtension: "")
+        }
+    }
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(Int.self, forKey: .id)

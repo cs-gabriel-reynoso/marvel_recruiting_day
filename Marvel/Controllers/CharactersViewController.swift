@@ -10,7 +10,7 @@ import UIKit
 
 final class CharactersViewController: UIViewController {
     
-    let service: MarvelService = MarvelServiceImpl()
+    let service: MarvelService = MarvelServiceMock()
     
     var charactersView: CharactersView! {
         didSet {
