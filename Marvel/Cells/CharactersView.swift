@@ -84,6 +84,7 @@ extension CharactersView: ViewCodeBased {
     func setupAutolayout() {
         searchBar.attachToSafeAreaLeftRightAnchors()
         searchBar.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         activityIndicator.attachToSafeAreaCenterYXAnchors()
         

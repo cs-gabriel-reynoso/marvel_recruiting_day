@@ -10,9 +10,9 @@ import UIKit
 import Reusable
 
 final class CharacterTableCell: UITableViewCell, ReusableViewCodeBased {
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var characterDescription: UILabel!
-    @IBOutlet weak var thumb: UIImageView!
+//    @IBOutlet weak var name: UILabel!
+//    @IBOutlet weak var characterDescription: UILabel!
+//    @IBOutlet weak var thumb: UIImageView!
     
     private var mainStackView: UIStackView!
     private var labelsStackView: UIStackView!
@@ -49,9 +49,7 @@ final class CharacterTableCell: UITableViewCell, ReusableViewCodeBased {
     }
     
     func setupComponents() {
-        addSubview(characterNameLabel)
-        addSubview(characterDescLabel)
-        addSubview(characterThumbImageView)
+        addSubview(mainStackView)
     }
     
     func setupAutolayout() {

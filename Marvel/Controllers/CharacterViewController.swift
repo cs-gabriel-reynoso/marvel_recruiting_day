@@ -11,13 +11,13 @@ import Reusable
 
 final class CharacterViewController: UIViewController, ReusableViewCodeBased {
     var needsSetup: Bool = true
+//
+//    @IBOutlet weak var characterImage: UIImageView!
+//    @IBOutlet weak var characterDescription: UILabel!
     
-    @IBOutlet weak var characterImage: UIImageView!
-    @IBOutlet weak var characterDescription: UILabel!
-    
-    private var characterThumbImage: UIImageView!
-    private var darkLayerView: UIView!
-    private var characterDescriptionLabel: UILabel!
+    private var characterThumbImage: UIImageView = .init(frame: .zero)
+    private var darkLayerView: UIView = .init(frame: .zero)
+    private var characterDescriptionLabel: UILabel = .init(frame: .zero)
     
     let character: Character
     
@@ -33,41 +33,39 @@ final class CharacterViewController: UIViewController, ReusableViewCodeBased {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+//        setupView()
     }
     
     func commonInit() {
-        darkLayerView.addSubview(characterDescriptionLabel)
+        setupView()
     }
     
     func setupComponents() {
-        characterThumbImage = UIImageView(frame: .zero)
-        darkLayerView = UIView(frame: .zero)
-        characterDescriptionLabel = UILabel(frame: .zero)
+        view.addSubview(characterThumbImage)
+        darkLayerView.addSubview(characterDescriptionLabel)
+        view.addSubview(darkLayerView)
+        
+        darkLayerView.backgroundColor = .black
+        darkLayerView.layer.opacity = 0.85
+        
+        characterThumbImage.contentMode = .top
+        characterThumbImage.download(image: character.thumbImage?.fullPath() ?? "https://www.profissionaldeecommerce.com.br/wp-content/uploads/2016/03/mkt-meme-1.jpg")
+        
+        characterDescriptionLabel.numberOfLines = 0
+        characterDescriptionLabel.textColor = .white
+        characterDescriptionLabel.textAlignment = .center
+        characterDescriptionLabel.text = character.bio.isEmpty ? "No description" : character.bio
+        
+        navigationItem.title = character.name
     }
     
     func setupAutolayout() {
         characterThumbImage.attachToSafeArea()
         
-        darkLayerView.attachToSafeAreaLeftRightAnchors(margin: 5)
+        darkLayerView.attachToSafeAreaLeftRightAnchors()
         darkLayerView.bottomAnchor.constraint(equalTo: characterThumbImage.bottomAnchor).isActive = true
         darkLayerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        characterDescriptionLabel.attachToSafeArea(margin: 0)
-    }
-    
-    func setupView() {
-        darkLayerView.backgroundColor = .black
-        darkLayerView.layer.opacity = 0.6
-        characterThumbImage.download(image: character.thumbImage?.fullPath() ?? "")
-        
-        characterDescriptionLabel.numberOfLines = 3
-        characterDescriptionLabel.textColor = .white
-        characterDescriptionLabel.text = character.bio.isEmpty ? "No description" : character.bio
-
-        navigationItem.title = character.name
-        
-        characterDescription.text = character.bio.isEmpty ? "No description" : character.bio
-        characterImage.download(image: character.thumbImage?.fullPath() ?? "")
+        characterDescriptionLabel.attachToSafeArea(margin: 10)
     }
 }
