@@ -31,6 +31,7 @@ extension CharactersViewController {
         title = "Characters"
         charactersView = CharactersView(frame: view.bounds)
         setupSearchBar()
+        setupNavagationItem()
         fetchCharacters()
     }
 }
@@ -51,6 +52,20 @@ extension CharactersViewController {
     
     func setupSearchBar() {
         charactersView.searchBarDelegate = self
+    }
+    
+    func setupNavagationItem() {
+        let listButton = UIBarButtonItem(image: #imageLiteral(resourceName: "List Icon"), style: .plain, target: self, action: #selector(listButtonTap))
+        let gridButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Grid Icon"), style: .plain, target: self, action: #selector(gridButtonTap))
+        self.navigationItem.rightBarButtonItems = [listButton, gridButton]
+    }
+    
+    @objc private func listButtonTap() {
+        charactersView.presentationState = .list
+    }
+    
+    @objc private func gridButtonTap() {
+        charactersView.presentationState = .grid
     }
 }
 
@@ -80,13 +95,13 @@ extension CharactersViewController {
 }
 
 extension CharactersViewController {
-    @IBAction func showAsGrid(_ sender: UIButton) {
-        charactersView.presentationState = .grid
-    }
-    
-    @IBAction func showAsTable(_ sender: UIButton) {
-        charactersView.presentationState = .list
-    }
+//    @IBAction func showAsGrid(_ sender: UIButton) {
+//
+//    }
+//
+//    @IBAction func showAsTable(_ sender: UIButton) {
+//        charactersView.presentationState = .list
+//    }
 }
 
 
